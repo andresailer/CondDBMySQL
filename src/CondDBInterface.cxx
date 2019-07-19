@@ -118,7 +118,6 @@ CondDBInterface::~CondDBInterface()
 
 void 
 CondDBInterface::init(string databaseInfo)
-    throw(CondDBException)
 {
     // databaseInfo = "server:dbname:user:passwd"
     // e.g. "atlobk01.cern.ch:conditionsdb:anonymous:online"
@@ -146,7 +145,6 @@ CondDBInterface::init(string databaseInfo)
 
 void
 CondDBInterface::createCondDB(string condDBInfo)
-    throw(CondDBException)
 {
     if ( initDone == false )
     {
@@ -173,7 +171,6 @@ CondDBInterface::createCondDB(string condDBInfo)
 
 
 bool CondDBInterface::isCondDBcreated() const
-    throw(CondDBException)
 {
     if ( initDone == false )
     {
@@ -190,7 +187,6 @@ bool CondDBInterface::isCondDBcreated() const
 
 void 
 CondDBInterface::openDatabase()
-    throw(CondDBException)
 {
     if ( initDone == false )
     {
@@ -216,16 +212,15 @@ CondDBInterface::openDatabase()
 
 
 // By now we dont use trasactions, so those are dummy methods
-void CondDBInterface::startUpdate() throw(CondDBException) {}
+void CondDBInterface::startUpdate() {}
 
-void CondDBInterface::startRead() throw(CondDBException) {}
+void CondDBInterface::startRead() {}
 
-void CondDBInterface::abort() throw(CondDBException) {}
+void CondDBInterface::abort() {}
 
-void CondDBInterface::commit() throw(CondDBException) {}
+void CondDBInterface::commit() {}
 
 ICondDBDataAccess* CondDBInterface::getCondDBDataAccess()
-    throw(CondDBException)
 {
     if (!condDataMgr) {
 	condDataMgr = new CondDBDataAccess(relDBMgr);
@@ -238,7 +233,6 @@ ICondDBDataAccess* CondDBInterface::getCondDBDataAccess()
 
 
 ICondDBFolderMgr* CondDBInterface::getCondDBFolderMgr()
-    throw(CondDBException)
 {
     if (!condFolderMgr) {
 	condFolderMgr = new CondFolderMgr(relDBMgr);
@@ -249,7 +243,6 @@ ICondDBFolderMgr* CondDBInterface::getCondDBFolderMgr()
 }
 
 ICondDBTagMgr* CondDBInterface::getCondDBTagMgr()
-    throw(CondDBException)
 {
     if (!condTagMgr) {
 	condTagMgr = new CondDBTagMgr(relDBMgr);

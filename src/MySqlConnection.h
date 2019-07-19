@@ -71,11 +71,9 @@ class MySqlConnection {
 
 public:
 
-    MySqlConnection()
-	throw(CondDBException);
+    MySqlConnection();
     
-    MySqlConnection(MySqlHandle *mysql)
-	throw(CondDBException);
+    MySqlConnection(MySqlHandle *mysql);
     
     ~MySqlConnection();
     
@@ -84,13 +82,11 @@ public:
 		 const string& password,
 		 unsigned int port = 0)//,
 //		 const string& dbname)
-	throw(CondDBException);
+      ;
 
-    void execute(MYSQLSTREAM& query)
-	throw(CondDBException);
+    void execute(MYSQLSTREAM& query);
 
-    MySqlResult *select(MYSQLSTREAM& query)
-	throw(CondDBException);
+    MySqlResult *select(MYSQLSTREAM& query);
 
     bool changeDB(const string& dbname);
 

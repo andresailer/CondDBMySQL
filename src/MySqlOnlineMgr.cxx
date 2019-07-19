@@ -59,7 +59,6 @@ MySqlOnlineMgr::~MySqlOnlineMgr()
  */
 
 void MySqlOnlineMgr::findOnl(CondDBKey time, int fldId, int partId, CondDBTable *table, string Id, string selection, const vector <string> *nullValues)
-	throw(CondDBException)
 {
     MYSQLSTREAM query, tmpQuery;
 
@@ -89,7 +88,6 @@ void MySqlOnlineMgr::findOnl(CondDBKey time, int fldId, int partId, CondDBTable 
 
 void MySqlOnlineMgr::findTag(CondDBKey time, int fldId, int partId, int tagId, CondDBTable *table, string selection,
 			     const std::vector <std::string> *nullValues)
-    throw(CondDBException)
 {
     MYSQLSTREAM query, tmpQuery;
     
@@ -123,7 +121,6 @@ void MySqlOnlineMgr::findTag(CondDBKey time, int fldId, int partId, int tagId, C
 
 void MySqlOnlineMgr::browseOnl(CondDBKey since, CondDBKey till, 
 				int fld_id, int part_id, CondDBTable *table, string Id, string selection, const vector <string> *nullValues)
-    throw(CondDBException)
 {
     
     MYSQLSTREAM query, tmpQuery;
@@ -155,7 +152,6 @@ OR (since_t>=" << since << " AND " << till << ">=since_t))";
 
 void MySqlOnlineMgr::browseHist(CondDBKey since, CondDBKey till, 
 				int fld_id, int part_id, int tag_id, CondDBTable *table, string selection, const vector <string> *nullValues)
-    throw(CondDBException)
 {
     
     MYSQLSTREAM query, tmpQuery;
@@ -182,7 +178,6 @@ void MySqlOnlineMgr::browsePoint(CondDBKey time,
 				 CondDBTable *table, 
 				 string selection,
 				 const std::vector <std::string> *nullValues)
-    throw(CondDBException)
 {
     MYSQLSTREAM query, tmpQuery;
     
@@ -200,7 +195,6 @@ void MySqlOnlineMgr::browsePoint(CondDBKey time,
 }
 
 void MySqlOnlineMgr::browseTag(int fldId, int tagId, CondDBTable *table, string selection, const std::vector <std::string> *nullValues)
-    throw(CondDBException)
 {
     MYSQLSTREAM query, tmpQuery;
     
@@ -228,7 +222,6 @@ void MySqlOnlineMgr::browseAll(int fldId,
 			       CondDBTable *table,
 			       string selection,
 			       const vector <string> *nullValues)
-    throw(CondDBException)
 {
     MYSQLSTREAM query, tmpQuery;
     
@@ -248,7 +241,6 @@ void MySqlOnlineMgr::browseAll(int fldId,
 }
 
 void MySqlOnlineMgr::makeTable(MySqlResult *res, CondDBTable *table, int fldId, int partId, const std::vector <std::string> *nullValues, int version)
-    throw(CondDBException)
 {
     if (res->countRows())
     {
@@ -329,7 +321,6 @@ void MySqlOnlineMgr::makeTable(MySqlResult *res, CondDBTable *table, int fldId, 
 void MySqlOnlineMgr::insertOnl(CondDBKey since, CondDBKey till,
 			       int fldId, int partId, string& data,
 			       string& name)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
     query << "INSERT INTO " DATA_TBL_ONL_N << fldId << "_" << partId << "\n"
@@ -338,7 +329,6 @@ void MySqlOnlineMgr::insertOnl(CondDBKey since, CondDBKey till,
 }
 
 void MySqlOnlineMgr::insertData(int fldId, int partId, int datId, string& data, string& name)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
     query << "INSERT INTO " DATA_TBL_TAG_N << fldId << "_" << partId << "\n"
@@ -356,7 +346,6 @@ void MySqlOnlineMgr::insertData(int fldId, int partId, int datId, string& data, 
  */
 
 void MySqlOnlineMgr::createTablesOnl(int folderId, vector <string>& names, vector <CondDBTable::cdb_types>& types, bool Id)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
 
@@ -419,7 +408,6 @@ void MySqlOnlineMgr::createTablesOnl(int folderId, vector <string>& names, vecto
 
 
 void MySqlOnlineMgr::createTablesTag(int folderId, vector <string>& names, vector <CondDBTable::cdb_types>& types, bool Id)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
 
@@ -486,7 +474,6 @@ void MySqlOnlineMgr::createTablesTag(int folderId, vector <string>& names, vecto
 
 int MySqlOnlineMgr::createPartition(CondDBKey since, CondDBKey till,
 				    int folderId, int dbId)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
     query << "INSERT INTO " PARTITION_TBL_N << folderId 
@@ -515,7 +502,6 @@ int MySqlOnlineMgr::getDatabaseId()
  */
 
 int MySqlOnlineMgr::getPartitionId(CondDBKey point, int folderId)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
 
@@ -538,7 +524,6 @@ int MySqlOnlineMgr::getPartitionId(CondDBKey point, int folderId)
  */
 
 void MySqlOnlineMgr::deleteTables(int folderId)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
     query << "DROP TABLE " PARTITION_TBL_N << folderId;
@@ -557,7 +542,6 @@ void MySqlOnlineMgr::deleteTables(int folderId)
  */
 
 void MySqlOnlineMgr::storeOnl(int fldId, int partId, CondDBTable *table)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
     
@@ -667,7 +651,6 @@ void MySqlOnlineMgr::storeOnl(int fldId, int partId, CondDBTable *table)
 }
 
 void MySqlOnlineMgr::storeOnlId (int fldId, int partId, CondDBTable *table)
-	throw(CondDBException)
 {
     MYSQLSTREAM query;
     
@@ -814,7 +797,6 @@ void MySqlOnlineMgr::storeOnlId (int fldId, int partId, CondDBTable *table)
 
 
 void MySqlOnlineMgr::storeVer(int fldId, int partId, CondDBTable *table)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
 
@@ -933,7 +915,6 @@ void MySqlOnlineMgr::storeVer(int fldId, int partId, CondDBTable *table)
 }
 
 void MySqlOnlineMgr::store(CondDBKey since, CondDBKey till, int folderId, int dbId, int datId)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
 
@@ -1033,7 +1014,6 @@ void MySqlOnlineMgr::store(CondDBKey since, CondDBKey till, int folderId, int db
 }
 
 void MySqlOnlineMgr::insert(CondDBKey since, CondDBKey till, int folderId, int layer, int tblId, int datId)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
     query << "INSERT INTO " OBJECT_KEY_TBL_N << folderId << "\n"
@@ -1056,7 +1036,6 @@ void MySqlOnlineMgr::changeDatabase(const string& srvname,
 				    const string& password,
 				    const string& dbname,
 				    int dbId)
-    throw(CondDBException)
 {
     connect(srvname, username, password);
 
@@ -1140,7 +1119,6 @@ void MySqlOnlineMgr::getSchema(int fldId, int partId, CondDBTable *table, bool v
 // New functions
 
 void MySqlOnlineMgr::browseId (int folderId, int tagId, ICondDBTimePath& path)
-	throw(CondDBException)
 {
     MYSQLSTREAM query;
     if (tagId == 0)
@@ -1161,7 +1139,6 @@ void MySqlOnlineMgr::browseId (int folderId, int tagId, ICondDBTimePath& path)
 }
 
 void MySqlOnlineMgr::tagId (int folderId, int tagId, const ICondDBTimePath& path)
-	throw(CondDBException)
 {
     MYSQLSTREAM query;
     
@@ -1188,7 +1165,6 @@ void MySqlOnlineMgr::tagId (int folderId, int tagId, const ICondDBTimePath& path
  */
 
 void MySqlOnlineMgr::escapeBinaryString(string& target, const string& source)
-    throw(CondDBException)
 {
     unsigned int len = source.size();
     if( len==0 ) { target=""; return; }

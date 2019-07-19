@@ -59,8 +59,7 @@ public:
    *
    * The conversion could generate an exception (in principle)
    */
-  virtual void data(ICondDBStreamable &s) const
-    throw(CondDBException) = 0;
+  virtual void data(ICondDBStreamable &s) const = 0;
 
   /**
    * Returns the insertion time of this object.

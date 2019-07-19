@@ -36,14 +36,12 @@
 
 ICondDBMgr* 
 CondDBMySQLMgrFactory::createCondDBMgr()
-  throw(CondDBException)
 {
   return new CondDBInterface;
 }
 
 void 
 CondDBMySQLMgrFactory::destroyCondDBMgr(ICondDBMgr* CondDBMgr)
-  throw(CondDBException)
 {
   delete CondDBMgr;
 }

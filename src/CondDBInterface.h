@@ -56,51 +56,38 @@ public:
     // Destructor
     virtual ~CondDBInterface();
 
-    virtual void init(string databaseInfo = "")
-	throw(CondDBException);
+    virtual void init(string databaseInfo = "");
 
-    virtual void createCondDB(string condDBInfo = "")
-	throw(CondDBException);
+    virtual void createCondDB(string condDBInfo = "");
 
-    virtual bool isCondDBcreated() const
-	throw(CondDBException);
+    virtual bool isCondDBcreated() const;
   
-    virtual void openDatabase()
-	throw(CondDBException);
+    virtual void openDatabase();
 
-    virtual void startUpdate()
-	throw(CondDBException);
+    virtual void startUpdate();
 
-    virtual void startRead()
-	throw(CondDBException);
+    virtual void startRead();
 
-    virtual void abort()
-	throw(CondDBException);
+    virtual void abort();
 
-    virtual void commit()
-	throw(CondDBException);
+    virtual void commit();
 
     const char* getGeneralDBname() const 
 	{ return relDBMgr->getDBName().c_str(); }
 
-    ICondDBBasicDataAccess* getCondDBBasicDataAccess()
-        throw(CondDBException) {
+    ICondDBBasicDataAccess* getCondDBBasicDataAccess() {
 	return getCondDBDataAccess();
     };
 
-    ICondDBDataAccess* getCondDBDataAccess()
-	throw(CondDBException);
+    ICondDBDataAccess* getCondDBDataAccess();
 
-    ICondDBBasicFolderMgr* getCondDBBasicFolderMgr()
-        throw(CondDBException) {
+    ICondDBBasicFolderMgr* getCondDBBasicFolderMgr() {
 	return getCondDBFolderMgr();
     };
     
-    ICondDBFolderMgr* getCondDBFolderMgr()
-	throw(CondDBException);
+    ICondDBFolderMgr* getCondDBFolderMgr();
 
-    ICondDBTagMgr* getCondDBTagMgr()
-	throw(CondDBException);
+    ICondDBTagMgr* getCondDBTagMgr();
       
 private:
  

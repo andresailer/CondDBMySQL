@@ -69,52 +69,38 @@ public:
 
     ~MySqlFolderMgr();
 
-    MySqlResult *find(const string& pathName, folder_type type)
-	throw(CondDBException);
+    MySqlResult *find(const string& pathName, folder_type type);
 
-    MySqlResult *find(int folderId, folder_type type)
-	throw(CondDBException);
+    MySqlResult *find(int folderId, folder_type type);
 
-    int getId(const string& pathName, folder_type type)
-	throw(CondDBException);
+    int getId(const string& pathName, folder_type type);
 
-    MySqlResult *browse(const string& basename, folder_type type)
-	throw(CondDBException);
+    MySqlResult *browse(const string& basename, folder_type type);
 
-    MySqlResult *browseChilds(int parentId, folder_type type)
-	throw(CondDBException);
+    MySqlResult *browseChilds(int parentId, folder_type type);
 
-    int getFolderType(const string& fullPathName)
-	throw(CondDBException);
+    int getFolderType(const string& fullPathName);
 
-    bool exist(const string& pathName, folder_type type)
-	throw(CondDBException);
+    bool exist(const string& pathName, folder_type type);
 
-    bool exist(int folderId, folder_type type)
-	throw(CondDBException);
+    bool exist(int folderId, folder_type type);
 
     int store(const string& pathName,
 	      const string& description,
 	      const string& attributes,
-	      int parentId, int tblId, folder_type type, int ddtype = 0)
-	throw(CondDBException);
+	      int parentId, int tblId, folder_type type, int ddtype = 0);
 
-    void deleteFolder(int folderId)
-	throw(CondDBException);
+    void deleteFolder(int folderId);
 
 // Associate tags to folders
 // This operation must be paired with the tag object association
-    bool isTagged(int folderId, int tagId)
-	throw(CondDBException);
+    bool isTagged(int folderId, int tagId);
 
-    void addTag(int folderId, int tagId)
-	throw(CondDBException);
+    void addTag(int folderId, int tagId);
 
-    void removeTag(int folderId, int tagId)
-	throw(CondDBException);
+    void removeTag(int folderId, int tagId);
 
-    MySqlResult *browseTaggedFolders(const std::string& tagName)
-	throw(CondDBException);
+    MySqlResult *browseTaggedFolders(const std::string& tagName);
  
 private:
     MySqlDBMgr *databaseMgr;

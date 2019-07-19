@@ -78,7 +78,7 @@ MySqlFolderMgr::~MySqlFolderMgr()
  */
 
 MySqlResult *MySqlFolderMgr::find(const string& pathname, folder_type type)
-    throw(CondDBException)
+
 {
     MYSQLSTREAM query;
     query << "SELECT * FROM folders_tbl WHERE fpath=\'" << pathname<< "\'";
@@ -92,7 +92,6 @@ MySqlResult *MySqlFolderMgr::find(const string& pathname, folder_type type)
  */
 
 MySqlResult *MySqlFolderMgr::find(int folderId, folder_type type)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
     query << "SELECT * FROM " FOLDERS_TBL " WHERE fld_id=" << folderId;
@@ -110,7 +109,6 @@ MySqlResult *MySqlFolderMgr::find(int folderId, folder_type type)
  */
 
 MySqlResult *MySqlFolderMgr::browse(const string& basename, folder_type type)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
     query << "SELECT * FROM folders_tbl ";
@@ -134,7 +132,6 @@ MySqlResult *MySqlFolderMgr::browse(const string& basename, folder_type type)
  */
 
 MySqlResult *MySqlFolderMgr::browseChilds(int parentId, folder_type type)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
     query << "SELECT * FROM folders_tbl WHERE fparent=" << parentId; 
@@ -151,7 +148,6 @@ MySqlResult *MySqlFolderMgr::browseChilds(int parentId, folder_type type)
  */
 
 bool MySqlFolderMgr::exist(const string& fullPath, folder_type type)
-    throw(CondDBException)
 {
     bool exist = false;
     MySqlResult *res = find(fullPath, type);
@@ -168,7 +164,6 @@ bool MySqlFolderMgr::exist(const string& fullPath, folder_type type)
  */
 
 bool MySqlFolderMgr::exist(int id, folder_type type)
-    throw(CondDBException)
 {
     bool exist = false;
     MySqlResult *res = find(id, type);
@@ -192,7 +187,6 @@ int MySqlFolderMgr::store(const string& pathName,
 			  int dbId,
 			  folder_type type,
 			  int ddtype)
-    throw(CondDBException)
 { 
     Assert ( type != MySqlFolderMgr::Any );
     // check if parent exists as a folderSet
@@ -219,7 +213,6 @@ int MySqlFolderMgr::store(const string& pathName,
  */
 
 void MySqlFolderMgr::deleteFolder(int folderId)
-    throw(CondDBException)
 {
     MySqlResult *res = browseChilds(folderId, MySqlFolderMgr::Any);
     if (res->countRows() == 0)
@@ -244,7 +237,6 @@ void MySqlFolderMgr::deleteFolder(int folderId)
  * id is 'tagId'
  */
 bool MySqlFolderMgr::isTagged(int folderId, int tagId)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
     query << "SELECT * FROM " TAG2FOLDER_TBL " WHERE fld_id=" 
@@ -262,7 +254,6 @@ bool MySqlFolderMgr::isTagged(int folderId, int tagId)
  * of the MySqlObjectMgr with the same name.
  */
 void MySqlFolderMgr::removeTag(int folderId, int tagId)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
     if ( !isTagged( folderId, tagId) ) {
@@ -307,7 +298,6 @@ void MySqlFolderMgr::removeTag(int folderId, int tagId)
  * of the MySqlObjectMgr with the same name.
  */
 void MySqlFolderMgr::addTag(int folderId, int tagId)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
     query << "INSERT INTO " TAG2FOLDER_TBL " (tag_id,fld_id,insert_t) VALUES(" 
@@ -316,7 +306,6 @@ void MySqlFolderMgr::addTag(int folderId, int tagId)
 }
 
 MySqlResult *MySqlFolderMgr::browseTaggedFolders(const string& tagName)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
     query << "SELECT f.fpath, t.tname, l.insert_t\n"
@@ -326,7 +315,6 @@ MySqlResult *MySqlFolderMgr::browseTaggedFolders(const string& tagName)
 }
 
 int MySqlFolderMgr::getFolderType(const string& fullPathName)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
     query << "SELECT ddtype FROM folders_tbl WHERE fpath=\'" << fullPathName << "\'";

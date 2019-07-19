@@ -49,12 +49,10 @@ class CondDBMySQLMgrFactory {
 public:
 
   /// Creates an instance of ICondDBMgr.
-  static ICondDBMgr* createCondDBMgr()
-    throw(CondDBException);
+  static ICondDBMgr* createCondDBMgr();
 
   /// Destroys the instance of ICondDBMgr.
-  static void destroyCondDBMgr(ICondDBMgr* CondDBMgr)
-    throw(CondDBException);
+  static void destroyCondDBMgr(ICondDBMgr* CondDBMgr);
 
 };
 

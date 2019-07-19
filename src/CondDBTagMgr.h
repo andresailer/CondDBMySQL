@@ -53,48 +53,38 @@ class CondDBTagMgr : public ICondDBTagMgr {
     // Destructor
     virtual ~CondDBTagMgr();
 
-    void init()
-	throw(CondDBException);
+    void init();
 
     virtual void createCondDBTag( const std::string& name,
-				  const std::string  description = "") 
-	throw(CondDBException);
+				  const std::string  description = "");
 
-    virtual void deleteCondDBTag( const std::string& name ) 
-	throw(CondDBException);
+    virtual void deleteCondDBTag( const std::string& name );
   
     virtual void getCondDBTag( const std::string& tagName,
 			       ICondDBTag*& tag) const
-	throw(CondDBException);
+	;
 
-    virtual bool getCondDBTag (const std::string& folder, vector <string>& tagNames)
-	throw (CondDBException);
+    virtual bool getCondDBTag (const std::string& folder, vector <string>& tagNames);
 
-    virtual void getAllCondDBTag( std::vector<std::string>& allTag ) const
-	throw(CondDBException);
+    virtual void getAllCondDBTag( std::vector<std::string>& allTag ) const;
 
     virtual void tag( const std::string& folderName,
 		      const std::string& tagName,
-		      std::string usingTagName = "")
-	throw(CondDBException);
+		      std::string usingTagName = "");
 
     virtual bool isTagged( const std::string& folderName,
-                          const std::string& tagName)
-       throw(CondDBException);
+                          const std::string& tagName);
 
     virtual void untag( const std::string& folderName,
-			const std::string& tagName)
-	throw(CondDBException);
+			const std::string& tagName);
 
     // other methods not from the interface
     virtual void changeTagName( const std::string& oldName,
-				const std::string& newName) const
-	throw(CondDBException);
+				const std::string& newName) const;
 
     virtual void getAllTaggedFolder( const string& tagName,
 				     vector<string>& allFolder,
-				     vector<SimpleTime>& allApplTime) const
-	throw(CondDBException);
+				     vector<SimpleTime>& allApplTime) const;
 
  private:
 

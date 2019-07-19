@@ -40,7 +40,6 @@ CondDBMySQLObjectFactory::createCondDBObject(const CondDBKey& since,
 				     const CondDBKey& till,
 				     const std::string& data,
 				     const std::string& description)
-  throw(CondDBException)
 {
   if (since >= till)
     THROWEX("invalid input in createCondObject: since > till", 0);
@@ -58,7 +57,6 @@ CondDBMySQLObjectFactory::createCondDBObject(const CondDBKey& since,
 				     const CondDBKey& till,
 				     const ICondDBStreamable& obj,
 				     const std::string& description)
-  throw(CondDBException)
 {
   Assert(since < till);
   std::string data;
@@ -76,7 +74,6 @@ CondDBMySQLObjectFactory::createCondDBObject(const CondDBKey& since,
 // WARN: is this necessary? why not the user to call directly delete CondObj ??
 void 
 CondDBMySQLObjectFactory::destroyCondDBObject(ICondDBObject* CondObj)
-  throw(CondDBException)
 {
   delete CondObj;
 }

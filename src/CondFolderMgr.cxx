@@ -70,7 +70,6 @@ CondFolderMgr::~CondFolderMgr()
  */
 
 void CondFolderMgr::init()
-    throw(CondDBException)
 {
     relFolderMgr = relDBMgr->getFolderMgr();
     relTagMgr    = relDBMgr->getTagMgr();
@@ -83,7 +82,6 @@ void CondFolderMgr::init()
 
 void CondFolderMgr::createRootFolderSet( string attributes  /* = "" */,
 					 string description /* = "" */)
-    throw(CondDBException)
 {
     DebugMesg(CondDB, devl, "Defining the root FolderSet");
 
@@ -122,7 +120,6 @@ void CondFolderMgr::createRootFolderSet( string attributes  /* = "" */,
  */
 
 int CondFolderMgr::getDB_id(string dbname, string srvname)
-    throw(CondDBException)
 {
 
     MYSQLSTREAM query;
@@ -143,7 +140,6 @@ CondFolderMgr::createCondDBFolderSet( const string& fullPathName,
 				      string  description /* = "" */,
 				      bool    parents     /* = false */,
 				      int dd_type) 
-    throw(CondDBException)
 {
     DebugMesg(CondDB, user, "Creating FolderSet : " << fullPathName);
     DebugMesg(CondDB, user, "       description : " << description);
@@ -212,7 +208,6 @@ CondFolderMgr::createCondDBFolder( const string& fullPathName,
 				   string  attributes  /* = "" */,
 				   string  description /* = "" */,
 				   bool    parents     /* = false */) 
-    throw(CondDBException)
 {
     DebugMesg(CondDB, user, "Creating Folder : " << fullPathName);
     DebugMesg(CondDB, user, "    description : " << description);
@@ -294,7 +289,6 @@ CondFolderMgr::createCondDBFolder( const string& fullPathName,
 				   string  description ,
 				   bool    parents,
 				   CondFolder::folder_types ftype)
-    throw(CondDBException)
 {
     if (ftype==CondFolder::BLOBTAG)
     {
@@ -405,7 +399,6 @@ CondFolderMgr::createCondDBFolder( const string& fullPathName,
  */
 
 int CondFolderMgr::getFolderType(const string& fullPathName)
-	throw(CondDBException)
 {
     return relFolderMgr->getFolderType(fullPathName);
 }
@@ -417,7 +410,6 @@ int CondFolderMgr::getFolderType(const string& fullPathName)
  */
 
 bool CondFolderMgr::exist( const string& fullName ) const
-    throw(CondDBException)
 {
     string normName;
     normalizePath( fullName, normName );
@@ -426,7 +418,6 @@ bool CondFolderMgr::exist( const string& fullName ) const
 
 void CondFolderMgr::getCondDBFolder( const string& fullPathName,
 				     ICondDBFolder*& folder) const
-    throw(CondDBException)
 {
     // look for the Folder
     CondFolder *condFolder;
@@ -462,7 +453,6 @@ void CondFolderMgr::getCondDBFolder( const string& fullPathName,
 void
 CondFolderMgr::getCondDBFolderSet( const string& fullPathName,
 				   ICondDBFolderSet*& folderSet) const
-    throw(CondDBException)
 {
     // look for the FolderSet
     // look for the Folder
@@ -488,7 +478,6 @@ CondFolderMgr::getCondDBFolderSet( const string& fullPathName,
 
 void
 CondFolderMgr::getAllCondDBFolder( vector<string>& allCondFolder ) const
-    throw(CondDBException)
 {
     string name("");
     MySqlResult *res = relFolderMgr->browse(name, MySqlFolderMgr::Folder);
@@ -502,7 +491,6 @@ CondFolderMgr::getAllCondDBFolder( vector<string>& allCondFolder ) const
 
 void
 CondFolderMgr::getAllCondDBFolderSet( vector<string>& allCondFolderSet ) const
-    throw(CondDBException)
 {
     string name("");
     MySqlResult *res = relFolderMgr->browse(name, MySqlFolderMgr::FolderSet);
@@ -519,7 +507,6 @@ CondFolderMgr::getAllCondDBFolderSet( vector<string>& allCondFolderSet ) const
 void
 CondFolderMgr::getAllCondDBFolderBeneath( const string& fullPathName,
 					  vector<string>& folderList ) const
-    throw(CondDBException)
 {
     MySqlResult *res;
 
@@ -581,7 +568,6 @@ CondFolderMgr::getAllCondDBFolderBeneath( const string& fullPathName,
 MySqlResult *
 CondFolderMgr::getContainedFolderRef(int parentId, 
 				     MySqlFolderMgr::folder_type type) const
-    throw(CondDBException)
 {
     return relFolderMgr->browseChilds(parentId, type); 
 }
@@ -593,7 +579,6 @@ CondFolderMgr::getContainedFolderRef(int parentId,
 // returns 0 if folderSetFullName is not found 
 MySqlResult *
 CondFolderMgr::findFolderSet( const string& folderSetFullName ) const
-    throw(CondDBException)
 {
     return relFolderMgr->find(folderSetFullName, MySqlFolderMgr::FolderSet);
 }
@@ -602,14 +587,12 @@ CondFolderMgr::findFolderSet( const string& folderSetFullName ) const
 // returns 0 if folderFullName is not found 
 MySqlResult *
 CondFolderMgr::findFolder( const string& folderFullName ) const
-    throw(CondDBException)
 {
     return relFolderMgr->find(folderFullName, MySqlFolderMgr::Folder);
 }
 
 void 
 CondFolderMgr::deleteFolder( const string& folderFullName )
-    throw(CondDBException)
 {
     int folderId, dbPath, folderType;
     folderType = getFolderType(folderFullName);
@@ -644,7 +627,6 @@ void
 CondFolderMgr::splitPath(const string& fullPathName,
 			 string&       parent,
 			 string&       name) const
-    throw(CondDBException)
 {
     string normName;
     normalizePath(fullPathName, normName);
@@ -676,7 +658,6 @@ CondFolderMgr::splitPath(const string& fullPathName,
 void
 CondFolderMgr::normalizePath( const string& fullPathName,
 			      string&       normName ) const
-    throw(CondDBException)
 {
     if ((fullPathName[0] != separator) ||
 	(fullPathName.size() == 0) )
@@ -710,7 +691,6 @@ CondFolderMgr::normalizePath( const string& fullPathName,
 
 void CondFolderMgr::describe(const string& /* fullName */,
                              string /* options */) const
-    throw(CondDBException)
 {
     // Not yet implemented
 }

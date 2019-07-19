@@ -73,7 +73,7 @@ CondDBObject::CondDBObject(const CondDBKey&    since,
  * MySQL Specific Constructor
  */ 
 CondDBObject::CondDBObject(MySqlDBMgr *dbMgr, MySqlResult *res, int folderId)
-    throw(CondDBException)
+    
 {
     int db_id;
     int data_id;
@@ -178,7 +178,7 @@ void CondDBObject::data(string& dataValue) const
  * Gets the data as a ICondDBStreamable object
  */
 void CondDBObject::data(ICondDBStreamable& obj) const
-    throw(CondDBException)
+    
 {
     // the conversion could generate an exception (in principle)
     obj.retrieveFromDB(theData);

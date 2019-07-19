@@ -67,43 +67,32 @@ class MySqlDBMgr : public MySqlConnection {
 
     // The connect() method which establishes the DBMS connection
     // Defined in the superclass
-    void init(string& initstring)
-	throw(CondDBException);
+    void init(string& initstring);
 
     // Open and create a new database
     bool openDatabase(const string& dbname="");
     
-    void createDatabase(const string& dbname="")
-	throw(CondDBException);
+    void createDatabase(const string& dbname="");
 
     // Get data path information 
-    void getFolderId(string folder, int& folder_id, int& db_path_id)
-	throw(CondDBException);
+    void getFolderId(string folder, int& folder_id, int& db_path_id);
 
-    void getDBId(int fldId, int& dbId)
-	throw(CondDBException);
+    void getDBId(int fldId, int& dbId);
 
-    void getFolderType(string folderName, int& ftype)
-	throw(CondDBException);
+    void getFolderType(string folderName, int& ftype);
 
-    void getTagId(const string& tagName, int& tagId)
-	throw(CondDBException);
+    void getTagId(const string& tagName, int& tagId);
 
-    int createDBPath(const string& srvName, const string& dbName)
-	throw(CondDBException);
+    int createDBPath(const string& srvName, const string& dbName);
 
-    void getDBPath(int db_id, string& db_name, string& srv_name)
-	throw(CondDBException);
+    void getDBPath(int db_id, string& db_name, string& srv_name);
 
     // return the specific managers
-    MySqlDataMgr*   getDataMgr(int db_path)
-	throw(CondDBException);
+    MySqlDataMgr*   getDataMgr(int db_path);
 
-    MySqlObjectMgr* getObjectMgr(int db_path)
-	throw(CondDBException);
+    MySqlObjectMgr* getObjectMgr(int db_path);
 
-    MySqlOnlineMgr* getOnlineMgr(int db_path)
-	throw(CondDBException);
+    MySqlOnlineMgr* getOnlineMgr(int db_path);
 
     MySqlFolderMgr* getFolderMgr();
 

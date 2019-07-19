@@ -56,24 +56,24 @@ public:
     ~MySqlDataMgr();
 
     MySqlResult *fetch(int folderId, int partId, int oKey)
-	throw(CondDBException);
+	;
 
     int store(int folderId, int partId,
 	      string& description, string& blob)
-	throw(CondDBException);
+	;
 
     void changeDatabase(const string& srvname, 
 			const string& username,
 			const string& password,
 			const string& dbname,
 			int dbpath)
-	throw(CondDBException);
+	;
 
 private:
 
     void escapeBinaryString(string& target,
 			    const string& source)
-	throw(CondDBException);
+	;
 
     MySqlDBMgr *databaseMgr;
     string tableName;

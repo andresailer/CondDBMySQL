@@ -66,7 +66,6 @@ MySqlObjectMgr::~MySqlObjectMgr()
  */
 
 MySqlResult *MySqlObjectMgr::find(CondDBKey point, int folderId, int tagId)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
 
@@ -100,7 +99,6 @@ MySqlResult *MySqlObjectMgr::find(CondDBKey point, int folderId, int tagId)
  */
 
 MySqlResult *MySqlObjectMgr::browseAll(int folderId)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
     query << "SELECT * FROM " OBJECT_KEY_TBL_N << folderId;
@@ -114,7 +112,6 @@ MySqlResult *MySqlObjectMgr::browseAll(int folderId)
  */
 
 MySqlResult *MySqlObjectMgr::browseTagged(int folderId, int tagId)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
 
@@ -154,7 +151,6 @@ MySqlResult *MySqlObjectMgr::browseTagged(int folderId, int tagId)
  */
 
 MySqlResult *MySqlObjectMgr::browseAtPoint(CondDBKey point, int folderId)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
     query << "SELECT * FROM " OBJECT_KEY_TBL_N << folderId << " WHERE (" << point << " BETWEEN since_t AND till_t)";
@@ -167,7 +163,6 @@ MySqlResult *MySqlObjectMgr::browseAtPoint(CondDBKey point, int folderId)
  */
 
 MySqlResult *MySqlObjectMgr::browseInInterval(CondDBKey begin, CondDBKey end, int folderId)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
     query << "SELECT * FROM " OBJECT_KEY_TBL_N << folderId << " WHERE ( since_t BETWEEN " << begin << " AND " << end << " ) OR ( till_t BETWEEN " << begin << " AND " << end << " )";
@@ -184,7 +179,6 @@ MySqlResult *MySqlObjectMgr::browseInInterval(CondDBKey begin, CondDBKey end, in
  */
 
 MySqlResult *MySqlObjectMgr::browseHistory(int folderId, CondDBKey since, CondDBKey till, int tagId)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
     MySqlResult *res;
@@ -229,7 +223,6 @@ MySqlResult *MySqlObjectMgr::browseHistory(int folderId, CondDBKey since, CondDB
 
 void MySqlObjectMgr::insert(CondDBKey since, CondDBKey till,
 			   int folderId, int layer, int tblId, int datId)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
     query << "INSERT INTO " OBJECT_KEY_TBL_N << folderId << "\n"
@@ -248,7 +241,6 @@ void MySqlObjectMgr::insert(CondDBKey since, CondDBKey till,
  */
 
 void MySqlObjectMgr::createTables(int folderId)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
 
@@ -282,7 +274,6 @@ void MySqlObjectMgr::createTables(int folderId)
 
 int MySqlObjectMgr::createPartition(CondDBKey since, CondDBKey till,
 				    int folderId, int dbId)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
     query << "INSERT INTO " PARTITION_TBL_N << folderId 
@@ -312,7 +303,6 @@ int MySqlObjectMgr::getDatabaseId()
  */
 
 int MySqlObjectMgr::getDBId(CondDBKey point, int folderId)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
 
@@ -336,7 +326,6 @@ int MySqlObjectMgr::getDBId(CondDBKey point, int folderId)
  */
 
 int MySqlObjectMgr::getPartitionId(CondDBKey point, int folderId)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
 
@@ -359,7 +348,6 @@ int MySqlObjectMgr::getPartitionId(CondDBKey point, int folderId)
  */
 
 void MySqlObjectMgr::deleteTables(int folderId,int folderType)
-    throw(CondDBException)
 {
     // should iterate through all objects and delete the corresponding data?
     MYSQLSTREAM query;
@@ -391,7 +379,6 @@ void MySqlObjectMgr::deleteTables(int folderId,int folderType)
 // Corrected bug in update of head table
 void MySqlObjectMgr::store(CondDBKey since, CondDBKey till,
 			   int folderId, int dbId, int datId)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
 
@@ -507,7 +494,6 @@ void MySqlObjectMgr::store(CondDBKey since, CondDBKey till,
 // New functions
 
 void MySqlObjectMgr::browseId (int folderId, int tagId, ICondDBTimePath& path)
-	throw(CondDBException)
 {
     MYSQLSTREAM query;
     if (tagId == 0)
@@ -528,7 +514,6 @@ void MySqlObjectMgr::browseId (int folderId, int tagId, ICondDBTimePath& path)
 }
 
 void MySqlObjectMgr::tagId (int folderId, int tagId, const ICondDBTimePath& path)
-	throw(CondDBException)
 {
     MYSQLSTREAM query;
 
@@ -560,7 +545,6 @@ void MySqlObjectMgr::tagId (int folderId, int tagId, const ICondDBTimePath& path
  * of the MySqlFolderMgr with the same name.
  */
 void MySqlObjectMgr::addTag(int folderId, int newTagId, int oldTagId)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
     // Determine which objects need to be tagged
@@ -595,7 +579,6 @@ void MySqlObjectMgr::addTag(int folderId, int newTagId, int oldTagId)
  * of the MySqlFolderMgr with the same name.
  */
 void MySqlObjectMgr::removeTag(int folderId, int tagId)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
     query << "DELETE FROM " TAG2OBJ_TBL_N << folderId
@@ -611,7 +594,6 @@ void MySqlObjectMgr::changeDatabase(const string& srvname,
 				    const string& password,
 				    const string& dbname,
 				    int dbId)
-    throw(CondDBException)
 {
     connect(srvname, username, password);
 

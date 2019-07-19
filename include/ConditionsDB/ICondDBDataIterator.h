@@ -51,8 +51,7 @@ public:
    * Note: the object pointed by ICondDBObject* has to be deleted by the user
    * at the end of its usage.
    */
-  virtual ICondDBObject* current()
-    throw(CondDBException) = 0;
+  virtual ICondDBObject* current() = 0;
   
   /**
    * Finds the previous object in this iterator's iteration set.
@@ -63,8 +62,7 @@ public:
    * Note: the object pointed by ICondDBObject* has to be deleted by the user
    * at the end of its usage.
    */
-  virtual ICondDBObject* previous()
-    throw(CondDBException) = 0;
+  virtual ICondDBObject* previous() = 0;
 
   /**
    * Finds the next object in this iterator's iteration set.
@@ -75,8 +73,7 @@ public:
    * Note: the object pointed by ICondDBObject* has to be deleted by the user
    * at the end of its usage.
    */
-  virtual ICondDBObject* next()
-    throw(CondDBException) = 0;
+  virtual ICondDBObject* next() = 0;
 
   /**
    * Positions the iterator on the last object in this iterator's iteration set.

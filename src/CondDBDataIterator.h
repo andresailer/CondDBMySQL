@@ -57,14 +57,11 @@ public:
     virtual bool hasNext() const;
     virtual bool hasPrevious() const;
     
-    virtual ICondDBObject* current()
-	throw(CondDBException);
+    virtual ICondDBObject* current();
     
-    virtual ICondDBObject* previous()
-	throw(CondDBException);
+    virtual ICondDBObject* previous();
     
-    virtual ICondDBObject* next()
-	throw(CondDBException);
+    virtual ICondDBObject* next();
     
     virtual void goToFirst();
     virtual void goToLast();

@@ -70,11 +70,9 @@ public:
    
     ~MySqlHandle();
 
-    void link(MySqlHandle*& mysqlH) 
-	throw(CondDBException);
+    void link(MySqlHandle*& mysqlH);
     
-    void unlink(MySqlHandle*& mysqlH) 
-	throw(CondDBException);
+    void unlink(MySqlHandle*& mysqlH);
 
     bool isShared();
 
@@ -84,15 +82,13 @@ public:
 
     void open(const char *host, const char *user, 
 	      const char *passwd,unsigned int port)//, const char *dbname)
-	throw(CondDBException);
+	;
 
     int changeDB(const char *dbname);
 
-    void exec(const char *buf, unsigned int size)
-	throw(CondDBException);
+    void exec(const char *buf, unsigned int size);
 
-    MYSQL_RES *getres()
-	throw(CondDBException);
+    MYSQL_RES *getres();
 
 public:
 
@@ -113,11 +109,9 @@ private:
 class MySqlResult {
   
 public:
-    MySqlResult(MYSQL_RES *_res)
-	throw(CondDBException);
+    MySqlResult(MYSQL_RES *_res);
 
-    MySqlResult(MYSQL_RES *_res, MySqlHandle *& theHandle)
-	throw(CondDBException);
+    MySqlResult(MYSQL_RES *_res, MySqlHandle *& theHandle);
    
     ~MySqlResult();
     
@@ -129,28 +123,21 @@ public:
     
     bool nextRow();
     
-    char *getField(unsigned int field)
-	throw(CondDBException);
+    char *getField(unsigned int field);
     
-    int getIntField(unsigned int field)
-	throw(CondDBException);
+    int getIntField(unsigned int field);
 
-    CondDBKey getCondDBKeyField(unsigned int field)
-	throw(CondDBException);
+    CondDBKey getCondDBKeyField(unsigned int field);
 
-    SimpleTime getTimeStampField(unsigned int field)
-	throw(CondDBException);
+    SimpleTime getTimeStampField(unsigned int field);
 
     char **getFields();
     
-    unsigned long getLength(unsigned int field) 
-	throw(CondDBException);
+    unsigned long getLength(unsigned int field);
 
-    string getFieldName(unsigned int field)
-        throw(CondDBException);
+    string getFieldName(unsigned int field);
 
-    string getFieldType(unsigned int field)
-	throw(CondDBException);
+    string getFieldType(unsigned int field);
 
     
 private:
@@ -195,7 +182,6 @@ inline MySqlHandle::~MySqlHandle()
 }
 
 inline void MySqlHandle::link(MySqlHandle*& mysqlH)
-    throw(CondDBException)
 {
     Assert(mysqlH == 0);
     mysqlH = this;
@@ -203,7 +189,6 @@ inline void MySqlHandle::link(MySqlHandle*& mysqlH)
 }
     
 inline void MySqlHandle::unlink(MySqlHandle*& mysqlH)
-    throw(CondDBException)
 {
     Assert(mysqlH == this);
     usage_count--;
@@ -222,7 +207,6 @@ inline bool MySqlHandle::isShared()
 
 inline void MySqlHandle::open(const char *host, const char *user,
 			      const char *passwd, unsigned int port = 0)
-    throw(CondDBException)
 {
 	
     
@@ -252,7 +236,6 @@ inline void MySqlHandle::open(const char *host, const char *user,
 #include<iostream>
 
 inline void MySqlHandle::exec(const char *buf, unsigned int size)
-    throw(CondDBException)
 {
   // first use mysql_ping to enforce reconnect, if needed
   if (mysql_ping(&mysqlApp) || mysql_real_query(&mysqlApp, buf, size))
@@ -266,7 +249,6 @@ inline void MySqlHandle::exec(const char *buf, unsigned int size)
 }
 
 inline MYSQL_RES *MySqlHandle::getres()
-    throw(CondDBException)
 {
     MYSQL_RES *res = mysql_store_result(&mysqlApp);
     if ( !res )
@@ -302,7 +284,6 @@ inline bool MySqlHandle::isOpened()
 // MySqlResult member functions
 //
 inline MySqlResult::MySqlResult(MYSQL_RES *_res)
-    throw(CondDBException)
 {
 // This test is not necessary because this contructor is only
 // used in a place where the argument passed has already been
@@ -315,7 +296,6 @@ inline MySqlResult::MySqlResult(MYSQL_RES *_res)
 }
 
 inline MySqlResult::MySqlResult(MYSQL_RES *_res, MySqlHandle *& theHandle)
-	throw(CondDBException)
 {
     res = _res;
     row = 0;
@@ -364,7 +344,6 @@ inline bool MySqlResult::nextRow()
 }
 
 inline char * MySqlResult::getField(unsigned int field)
-    throw(CondDBException)
 {
     if ( !row )
 	row = mysql_fetch_row(res);
@@ -375,7 +354,6 @@ inline char * MySqlResult::getField(unsigned int field)
 }
     
 inline int MySqlResult::getIntField(unsigned int field)
-    throw(CondDBException)
 {
     char *ptr;
     if ( (ptr = getField(field))==0 )
@@ -386,7 +364,6 @@ inline int MySqlResult::getIntField(unsigned int field)
 }
 
 inline CondDBKey MySqlResult::getCondDBKeyField(unsigned int field)
-    throw(CondDBException)
 {
     char *ptr;
     if ( (ptr = getField(field))==0 )
@@ -397,7 +374,6 @@ inline CondDBKey MySqlResult::getCondDBKeyField(unsigned int field)
 }
 
 inline SimpleTime MySqlResult::getTimeStampField(unsigned int field)
-    throw(CondDBException)
 {
     char *ptr;
     if ( (ptr = getField(field))==0 )
@@ -427,7 +403,6 @@ inline char **MySqlResult::getFields()
 }
     
 inline unsigned long MySqlResult::getLength(unsigned int field)
-    throw(CondDBException)
 {
     if ( !row )
 	row = mysql_fetch_row(res);
@@ -440,7 +415,6 @@ inline unsigned long MySqlResult::getLength(unsigned int field)
 }
 
 inline string MySqlResult::getFieldName(unsigned int field)
-    throw(CondDBException)
 {
     MYSQL_FIELD *mfield;
     if (field < mysql_num_fields(res))
@@ -454,7 +428,6 @@ inline string MySqlResult::getFieldName(unsigned int field)
 }
 
 inline string MySqlResult::getFieldType(unsigned int field)
-	throw(CondDBException)
 {
 
     MYSQL_FIELD *mfield;

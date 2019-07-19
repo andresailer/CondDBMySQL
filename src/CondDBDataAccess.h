@@ -81,8 +81,7 @@ public:
     // Destructor
     virtual ~CondDBDataAccess();
 
-    virtual void init()
-	throw(CondDBException);
+    virtual void init();
     
     // Storing
 
@@ -93,8 +92,7 @@ public:
      */
 
     virtual void storeCondDBObject( const std::string& folderName,
-				    ICondDBObject* CondObject )
-	throw(CondDBException);
+				    ICondDBObject* CondObject );
 
     /**
      * Store table in the given folder
@@ -102,8 +100,7 @@ public:
      * @param table The table to be stored
      */
 
-    virtual void storeCondDBObject( const std::string& folderName, ICondDBTable *table)
-	throw(CondDBException);
+    virtual void storeCondDBObject( const std::string& folderName, ICondDBTable *table);
 
     // Queries
     
@@ -119,8 +116,7 @@ public:
     virtual void findNextValidCondDBObject( ICondDBObject*&  oblock,
 					    const string&    folderName,
 					    const CondDBKey& point,
-					    string           tagName = "" ) const
-      throw(CondDBException);
+					    string           tagName = "" ) const;
 
     /**
      * Find data which was last valid before the given point in time 
@@ -134,8 +130,7 @@ public:
     virtual void findLastValidCondDBObject( ICondDBObject*&  oblock,
 					    const string&    folderName,
 					    const CondDBKey& point,
-					    string           tagName = "" ) const
-      throw(CondDBException);
+					    string           tagName = "" ) const;
 
     
     /**
@@ -149,8 +144,7 @@ public:
     virtual void findCondDBObject( ICondDBObject*&    oblock,
 				   const std::string& folderName,
 				   const CondDBKey&   point,
-				   std::string        tagName = "" ) const
-	throw(CondDBException);
+				   std::string        tagName = "" ) const;
 
     /**
      * Find object for the given point in time (latest version or tag)
@@ -166,8 +160,7 @@ public:
 				   const std::string& id = "",
 				   const std::string&  selection = "",
 				   const std::vector <std::string> *nullValues = 0,
-				   std::string tagName = "") const
-	throw(CondDBException);
+				   std::string tagName = "") const;
 
     // Browsing
     
@@ -180,15 +173,13 @@ public:
     
     virtual void browseObjectsAtPoint( ICondDBDataIterator*& iterObjects,
 				       const std::string&    folderName,
-				       const CondDBKey&      point ) const
-	throw(CondDBException);
+				       const CondDBKey&      point ) const;
     
     virtual void browseObjectsAtPoint( ICondDBTable *table,
 				       const std::string&    folderName,
 				       const CondDBKey&      point,
 				       const std::string& selection = "",
-				       const std::vector <std::string> *nullValues = 0) const
-	throw(CondDBException);
+				       const std::vector <std::string> *nullValues = 0) const;
 
     /**
      * Browse for data inside the given interval in time (all versions)
@@ -201,8 +192,7 @@ public:
     virtual void browseObjectsInInterval( ICondDBDataIterator*& iterObjects,
 				       const std::string&    folderName,
 				       const CondDBKey&      begin,
-				       const CondDBKey&      end ) const
-	throw(CondDBException);
+				       const CondDBKey&      end ) const;
     
 
     /**
@@ -214,15 +204,13 @@ public:
  
     virtual void browseObjectsInTag( ICondDBDataIterator*& iterObjects,
 				     const std::string&    folderName,
-				     std::string           tagName = "" ) const
-	throw(CondDBException);
+				     std::string           tagName = "" ) const;
 
     virtual void browseObjectsInTag( ICondDBTable         *table,
 				     const std::string&    folderName,
 				     const std::string&    tagName = "",
 				     const std::string&    selection = "",
-				     const std::vector <std::string> *nullValues = 0 ) const
-	throw(CondDBException);
+				     const std::vector <std::string> *nullValues = 0 ) const;
     
     /**
      * Browse for data at the given point in time (all objects)
@@ -231,14 +219,12 @@ public:
      */
 
     virtual void browseAllObjects( ICondDBDataIterator*& iterObjects,
-				   const std::string&    folderName ) const
-	throw(CondDBException);
+				   const std::string&    folderName ) const;
 
     virtual void browseAllObjects( ICondDBTable         *table,
 				   const std::string&    folderName,
 				   const std::string&    selection = "",
-				   const std::vector <std::string> *nullValues = 0) const
-	throw(CondDBException);
+				   const std::vector <std::string> *nullValues = 0) const;
    
     /**
      * Browse folder for a given time interval
@@ -252,8 +238,7 @@ public:
 			       const std::string&    folderName,
 			       const CondDBKey since,
 			       const CondDBKey till,
-			       std::string tagName = "") const
-	throw(CondDBException);
+			       std::string tagName = "") const;
     
     /**
      * Browse folder for a given time interval
@@ -270,8 +255,7 @@ public:
 			       const std::string& id = "",
 			       const std::string&  selection = "",
 			       const std::vector <std::string> *nullValues = 0,
-			       string tagName = "") const
-	throw(CondDBException);
+			       string tagName = "") const;
 
     /**
      * Browse folder for Ids with optional tag
@@ -282,8 +266,7 @@ public:
     
     virtual void browseId (ICondDBTimePath& path, 
 			   std::string folder, 
-			   std::string tagName = "") const
-	throw(CondDBException);
+			   std::string tagName = "") const;
     
     /**
      * Build tag entries in database from the ICondDBTimePath container
@@ -292,8 +275,7 @@ public:
      * @param path The container
      */
     
-    virtual void tagFromTimePath (std::string folder, std::string tagName, ICondDBTimePath& path) const
-	throw(CondDBException);
+    virtual void tagFromTimePath (std::string folder, std::string tagName, ICondDBTimePath& path) const;
 
 
 	
@@ -303,11 +285,9 @@ public:
      * @schema A vector containing the types of the columns
      */
 
-    virtual void getTableSchema (std::string folder, ICondDBTable *table)
-	throw(CondDBException);
+    virtual void getTableSchema (std::string folder, ICondDBTable *table);
 
-    virtual void dump( std::string folderName = "" ) const
-	throw(CondDBException);
+    virtual void dump( std::string folderName = "" ) const;
     
  private:
     
@@ -316,8 +296,7 @@ public:
     
     //  mutable std::map<std::string, d_ULong>  tagNameMap;
     
-    //  d_ULong  getTagId(const std::string& tagName) const
-    //    throw(CondDBException);
+    //  d_ULong  getTagId(const std::string& tagName) const;
 };
 
 #endif

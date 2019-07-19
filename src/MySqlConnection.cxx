@@ -41,7 +41,7 @@
 #endif
 
 MySqlConnection::MySqlConnection()
-    throw(CondDBException)
+    
 {
     mysqlHandle = new MySqlHandle();
     Assert(mysqlHandle != 0);
@@ -52,7 +52,7 @@ MySqlConnection::MySqlConnection()
 }
 
 MySqlConnection::MySqlConnection(MySqlHandle *mysqlH)
-    throw(CondDBException)
+    
 {
     mysqlHandle = 0;
     Assert(mysqlH != 0);
@@ -86,7 +86,7 @@ void MySqlConnection::connect(const string& server,
 			      const string& username,
 			      const string& password,
 			      unsigned int port)
-  throw(CondDBException)
+  
 {
   const char *host = "localhost"; // Default server is in localhost
   const char *user = NULL;        // Default user is no user
@@ -164,7 +164,7 @@ bool MySqlConnection::changeDB(const string& dbname)
  * reused by the caller
  */
 void MySqlConnection::execute(MYSQLSTREAM& query)
-    throw(CondDBException)
+    
 {
 
 #ifdef USE_OLD_STREAMS
@@ -232,7 +232,7 @@ void MySqlConnection::execute(MYSQLSTREAM& query)
  * to return the corresponding 'MySqlResult' object.
  */
 MySqlResult *MySqlConnection::select(MYSQLSTREAM& query)
-    throw(CondDBException)
+    
 {
     execute(query);
     MySqlResult *res = new MySqlResult(mysqlHandle->getres(),mysqlHandle);

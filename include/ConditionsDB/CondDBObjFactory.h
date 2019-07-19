@@ -16,8 +16,7 @@ public:
   static ICondDBObject* createCondDBObject(const CondDBKey& since,
                                            const CondDBKey& till,
                                            const std::string& data,
-                                           const std::string& description)
-    throw(CondDBException) {
+                                           const std::string& description) {
     return CondDBMySQLObjectFactory::createCondDBObject
       (since, till, data, description);
   };
@@ -25,15 +24,13 @@ public:
   static ICondDBObject* createCondDBObject(const CondDBKey& since,
                                            const CondDBKey& till,
                                            const ICondDBStreamable &obj,
-                                           const std::string& description)
-    throw(CondDBException) {
+                                           const std::string& description){
     return CondDBMySQLObjectFactory::createCondDBObject
       (since, till, obj, description);
   };
 
   /// Destroys the instance of ICondDBObject.
-  static void destroyCondDBObject(ICondDBObject* CondObj)
-    throw(CondDBException) {
+  static void destroyCondDBObject(ICondDBObject* CondObj){
     CondDBMySQLObjectFactory::destroyCondDBObject( CondObj );
   };
 

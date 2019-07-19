@@ -63,8 +63,7 @@ public:
 		 const bool          isNULLint);
 
     // Specific to the MySQL implementation.
-    CondDBObject(MySqlDBMgr *dbMgr, MySqlResult* res, int folderId)
-	throw(CondDBException);
+    CondDBObject(MySqlDBMgr *dbMgr, MySqlResult* res, int folderId);
   
     // Destructor
     virtual ~CondDBObject();
@@ -77,8 +76,7 @@ public:
     virtual bool contains(const CondDBKey& point) const;
     virtual bool isNullInterval() const;
     virtual void data(string& dataValue) const;
-    virtual void data(ICondDBStreamable &s) const
-	throw(CondDBException);
+    virtual void data(ICondDBStreamable &s) const;
     virtual void insertionTime( SimpleTime& insTime ) const;
     virtual long layer() const;
     virtual void description(string& descr) const;

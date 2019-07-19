@@ -59,25 +59,21 @@ public:
     // Destructor
     virtual ~CondFolderMgr();
     
-    virtual void init()
-	throw(CondDBException);
+    virtual void init();
     
     virtual void createRootFolderSet( string attributes  /* = "" */,
-				      string description /* = "" */)
-	throw(CondDBException);
+				      string description /* = "" */);
     
     virtual void createCondDBFolderSet( const string& fullPathName,
 					string  attributes,
 					string  description,
 					bool    parents,
-					int dd_type) 
-	throw(CondDBException);
+					int dd_type) ;
     
     virtual void createCondDBFolderSet( const string& fullPathName,
                                         string  attributes  = "",
                                         string  description = "",
-					bool    parents     = false)
-        throw(CondDBException) {
+					bool    parents     = false) {
 	createCondDBFolderSet
 	    ( fullPathName, attributes, description, parents, 0 );
     };
@@ -85,55 +81,42 @@ public:
     virtual void createCondDBFolder( const string& fullPathName,
 				     string  attributes  = "",
 				     string  description = "",
-				     bool    parents     = false) 
-	throw(CondDBException);
+				     bool    parents     = false) ;
 
     virtual void createCondDBFolder( const string& fullPathName,
 				     ICondDBTable* table,
 				     string  attributes = "" ,
 				     string  description = "" ,
 				     bool    parents = false,
-				     ICondDBFolder::folder_types ftype = ICondDBFolder::STRUCT)
-	throw(CondDBException);
+				     ICondDBFolder::folder_types ftype = ICondDBFolder::STRUCT);
     
-    virtual bool exist( const string& fullName ) const
-	throw(CondDBException);
+    virtual bool exist( const string& fullName ) const;
     
     
     virtual void getCondDBFolderSet( const string&      fullPathName,
-				     ICondDBFolderSet*& folderSet) const
-	throw(CondDBException);
+				     ICondDBFolderSet*& folderSet) const;
     
     virtual void getCondDBFolder( const string&   fullPathName,
-				  ICondDBFolder*& folder) const
-	throw(CondDBException);
+				  ICondDBFolder*& folder) const;
     
     
-    void describe(const string& fullName, string options="") const
-	throw(CondDBException);
+    void describe(const string& fullName, string options="") const;
     
-    void getAllCondDBFolder( vector<string>& allCondFolder ) const
-	throw(CondDBException);
+    void getAllCondDBFolder( vector<string>& allCondFolder ) const;
     
-    void getAllCondDBFolderSet( vector<string>& allCondFolderSet ) const
-	throw(CondDBException);
+    void getAllCondDBFolderSet( vector<string>& allCondFolderSet ) const;
     
     void getAllCondDBFolderBeneath( const string& fullPathName,
-				    vector<string>& folderList ) const
-	throw(CondDBException);
+				    vector<string>& folderList ) const;
 
-    int getDB_id(std::string dbname, std::string srvname)
-	throw(CondDBException);
+    int getDB_id(std::string dbname, std::string srvname);
 
-    virtual void deleteFolder( const string& fullPathName )
-	throw(CondDBException);
+    virtual void deleteFolder( const string& fullPathName );
 
-    int getFolderType(const string& fullPathName)
-	throw(CondDBException);
+    int getFolderType(const string& fullPathName);
 
     // Not in the interface
-    MySqlResult *getContainedFolderRef(int parent_id, MySqlFolderMgr::folder_type type) const
-	throw(CondDBException);
+    MySqlResult *getContainedFolderRef(int parent_id, MySqlFolderMgr::folder_type type) const;
 
 private:
 
@@ -143,20 +126,16 @@ private:
     MySqlTagMgr*     relTagMgr;
     
     // methods
-    MySqlResult *findFolderSet( const string& folderSetFullName ) const
-	throw(CondDBException);
+    MySqlResult *findFolderSet( const string& folderSetFullName ) const;
     
-    MySqlResult *findFolder( const string& folderFullName ) const
-	throw(CondDBException);
+    MySqlResult *findFolder( const string& folderFullName ) const;
     
     void splitPath( const string& fullPathName,
 		    string&       parent,
-		    string&       name) const
-	throw(CondDBException);
+		    string&       name) const;
     
     void normalizePath( const string& fullPathName,
-			string&       normName ) const
-	throw(CondDBException);
+			string&       normName ) const;
 };
 
 #endif

@@ -66,7 +66,6 @@ MySqlDataMgr::~MySqlDataMgr()
  */
 
 MySqlResult *MySqlDataMgr::fetch(int folderId, int partId, int oKey)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
 
@@ -83,7 +82,6 @@ MySqlResult *MySqlDataMgr::fetch(int folderId, int partId, int oKey)
 
 int MySqlDataMgr::store(int folderId, int partId, 
 			string& description, string& blob)
-    throw(CondDBException)
 {
     int id;
     MYSQLSTREAM query;
@@ -115,7 +113,6 @@ void MySqlDataMgr::changeDatabase(const string& srvname,
 				  const string& password,
 				  const string& dbname,
 				  int dbId)
-    throw(CondDBException)
 {
     connect(srvname, username, password);
     if(changeDB(dbname)==false)
@@ -131,7 +128,6 @@ void MySqlDataMgr::changeDatabase(const string& srvname,
  */
 
 void MySqlDataMgr::escapeBinaryString(string& target, const string& source)
-    throw(CondDBException)
 {
     unsigned int len = source.size();
     if( len==0 ) { target=""; return; }

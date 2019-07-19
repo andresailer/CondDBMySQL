@@ -65,7 +65,6 @@ MySqlTagMgr::~MySqlTagMgr()
  * Fetch tag with tag ID
  */
 MySqlResult *MySqlTagMgr::fetch(int id)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
     query << "SELECT * FROM " TAGS_TBL << " WHERE tag_id=" << id;
@@ -76,7 +75,6 @@ MySqlResult *MySqlTagMgr::fetch(int id)
  * Find named tag
  */
 MySqlResult *MySqlTagMgr::find(const string& name)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
     query << "SELECT * FROM " TAGS_TBL << " WHERE(tname=\'" << name << "\')";
@@ -84,7 +82,6 @@ MySqlResult *MySqlTagMgr::find(const string& name)
 }
 
 int MySqlTagMgr::getId(const string& tagName)
-    throw(CondDBException)
 {
     if (tagName=="") return 0;
     MySqlResult *res = find(tagName);
@@ -102,7 +99,6 @@ int MySqlTagMgr::getId(const string& tagName)
  */
 
 MySqlResult *MySqlTagMgr::findFolder (int folderId)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
     query << "SELECT * FROM tag2folder_tbl WHERE fld_id=" << folderId;
@@ -124,7 +120,6 @@ MySqlResult *MySqlTagMgr::findFolder (int folderId)
  * Check if exists the named tag
  */
 bool MySqlTagMgr::exist(const string& tagName)
-    throw(CondDBException)
 {
     bool exists = false;
     MySqlResult *res = find(tagName);
@@ -138,7 +133,6 @@ bool MySqlTagMgr::exist(const string& tagName)
  * Browse all currently defined tags
  */
 MySqlResult *MySqlTagMgr::browseAll()
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
     query << "SELECT * FROM " TAGS_TBL;
@@ -149,7 +143,6 @@ MySqlResult *MySqlTagMgr::browseAll()
  * Store a tag (same as defining a tag)
  */
 void MySqlTagMgr::storeTag(const string& name, const string& desc)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
     query << "INSERT INTO " TAGS_TBL " (insert_t,tname,tdesc) VALUES(NOW(),\'"
@@ -162,7 +155,6 @@ void MySqlTagMgr::storeTag(const string& name, const string& desc)
  * Remove a tag from tags table (same as undefine a tag)
  */
 void MySqlTagMgr::deleteTag(const string& name)
-    throw(CondDBException)
 {
     // Should we unlink the tags from objects?
     // Leaving the objects links has no effect other than
@@ -180,7 +172,6 @@ void MySqlTagMgr::deleteTag(const string& name)
  */
 void MySqlTagMgr::renameTag(const string& oldname,
 			    const string& newname)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
     query << "UPDATE " TAGS_TBL " SET tname=\'" << newname 

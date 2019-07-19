@@ -66,7 +66,6 @@ CondDBDataAccess::~CondDBDataAccess()
  
 void
 CondDBDataAccess::init()
-    throw(CondDBException)
 {
    //Assert(condTagMgr != 0);
 
@@ -82,7 +81,6 @@ CondDBDataAccess::init()
 
 void 
 CondDBDataAccess::storeCondDBObject(const string& folderName, ICondDBObject* CondObject )
-    throw(CondDBException)
 {
     string theData;
     string theDesc;
@@ -123,7 +121,6 @@ CondDBDataAccess::storeCondDBObject(const string& folderName, ICondDBObject* Con
  */
 
 void CondDBDataAccess::storeCondDBObject( const string& folderName, ICondDBTable *table)
-    throw(CondDBException)
 {
     int part_id, dbId, fld_id, ftype;
     
@@ -176,7 +173,6 @@ void CondDBDataAccess::findNextValidCondDBObject( ICondDBObject*&  oblock,
 						  const string&    folderName,
 						  const CondDBKey& point,
 						  string           tagName ) const
-    throw(CondDBException)
 {
 
   if ( oblock != NULL && oblock->validSince() <= point ) {
@@ -230,7 +226,6 @@ void CondDBDataAccess::findLastValidCondDBObject( ICondDBObject*&  oblock,
 						  const string&    folderName,
 						  const CondDBKey& point,
 						  string           tagName ) const
-    throw(CondDBException)
 {
 
   if ( oblock != NULL && oblock->validTill() >= point ) {
@@ -283,7 +278,6 @@ void CondDBDataAccess::findCondDBObject( ICondDBObject*&  oblock,
 				    const string&    folderName,
 				    const CondDBKey& point,
 				    string           tagName ) const
-    throw(CondDBException)
 {
 
     int tagId, folderId, dbPath, ftype;
@@ -453,7 +447,6 @@ void CondDBDataAccess::findCondDBObject (ICondDBTable *table,
 					 const string& selection,
 					 const vector <string> *nullValues,
 					 string tagName) const
-    throw(CondDBException)
 {
    int part_id, db_path, fld_id, ftype;
  
@@ -499,7 +492,6 @@ void CondDBDataAccess::findCondDBObject (ICondDBTable *table,
 
 void
 CondDBDataAccess::dump( string folder ) const
-    throw(CondDBException)
 {
     if (folder == "")
     {
@@ -520,7 +512,6 @@ CondDBDataAccess::dump( string folder ) const
 void CondDBDataAccess::browseObjectsAtPoint( ICondDBDataIterator*& iterObjects,
 					const string&         folderName,
 					const CondDBKey&      point ) const
-    throw(CondDBException)
 {
     int folder_id, tbl_path, ftype;
     CondDBDataIterator *condIterator;
@@ -546,7 +537,6 @@ void CondDBDataAccess::browseObjectsAtPoint( ICondDBTable         *table,
 					     const CondDBKey&      point,
 					     const string&    selection,
 					     const vector <string> *nullValues) const
-    throw(CondDBException)
 {
     int part_id, db_path, fld_id, ftype;
     relDBMgr->getFolderType(folderName, ftype);
@@ -583,7 +573,6 @@ void CondDBDataAccess::browseObjectsInInterval( ICondDBDataIterator*& iterObject
 						const string&         folderName,
 						const CondDBKey&      begin,
 						const CondDBKey&      end ) const
-  throw(CondDBException)
 {
     int folder_id, tbl_path, ftype;
     CondDBDataIterator *condIterator;
@@ -616,7 +605,6 @@ void
 CondDBDataAccess::browseObjectsInTag(ICondDBDataIterator*& iterObjects,
 				     const string&         folderName,
 				     string                tagName) const
-    throw(CondDBException)
 {
     int tag_id, folder_id, tbl_path, ftype;
     CondDBDataIterator *condIterator;
@@ -648,7 +636,6 @@ void CondDBDataAccess::browseObjectsInTag( ICondDBTable     *table,
 					   const string&    tagName,
 					   const string&    selection,
 					   const vector <string> *nullValues) const
-    throw(CondDBException)
 {
     int db_path, fld_id, ftype;
     relDBMgr->getFolderType(folderName, ftype);
@@ -685,7 +672,6 @@ void CondDBDataAccess::browseObjectsInTag( ICondDBTable     *table,
 void
 CondDBDataAccess::browseAllObjects(ICondDBDataIterator*& iterObjects,
 				   const string&  folderName ) const
-    throw(CondDBException)
 {
     int folder_id, tbl_path, ftype;
     CondDBDataIterator *condIterator;
@@ -711,7 +697,6 @@ void CondDBDataAccess::browseAllObjects( ICondDBTable         *table,
 					 const string&    folderName,
 					 const string&    selection,
 					 const vector <string> *nullValues) const
-	throw(CondDBException)
 {
     int db_path, fld_id, ftype;
     relDBMgr->getFolderType(folderName, ftype);
@@ -749,7 +734,6 @@ void CondDBDataAccess::browseHistory (ICondDBDataIterator*& iterObjects,
 				      const CondDBKey since,
 				      const CondDBKey till,
 				      std::string tagName) const
-    throw(CondDBException)
 {
     int tag_id, folder_id, tbl_path, ftype;
     CondDBDataIterator *condIterator;
@@ -794,7 +778,6 @@ void CondDBDataAccess::browseHistory(const string& folder,
 				     const string& selection,
 				     const vector <string> *nullValues,
 				     string tagName) const
-    throw(CondDBException)
 {
     int part_id, db_path, fld_id, ftype;
     relDBMgr->getFolderType(folder, ftype);
@@ -835,7 +818,6 @@ void CondDBDataAccess::browseHistory(const string& folder,
 void CondDBDataAccess::browseId (ICondDBTimePath& path, 
 				 std::string folder, 
 				 std::string tagName) const
-    throw(CondDBException)
 {
     int tag_id, db_path, fld_id, ftype;
     relDBMgr->getFolderType(folder, ftype);
@@ -866,7 +848,6 @@ void CondDBDataAccess::browseId (ICondDBTimePath& path,
 
     
 void CondDBDataAccess::tagFromTimePath (std::string folder, std::string tagName, ICondDBTimePath& path) const
-	throw(CondDBException)
 {
     int tag_id, db_path, fld_id, ftype;
     relDBMgr->getFolderType(folder, ftype);
@@ -899,7 +880,6 @@ void CondDBDataAccess::tagFromTimePath (std::string folder, std::string tagName,
 }
 
 void CondDBDataAccess::getTableSchema (string folder, ICondDBTable *table)
-	throw(CondDBException)
 {
     int db_path, fld_id, ftype;
     relDBMgr->getFolderType(folder, ftype);
@@ -932,7 +912,6 @@ void CondDBDataAccess::getTableSchema (string folder, ICondDBTable *table)
 /*
 d_ULong
 CondDBDataAccess::getTagId(const std::string& tagName) const
-  throw(CondDBException)
 {
   d_ULong tagId = 0;
 

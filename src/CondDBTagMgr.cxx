@@ -57,7 +57,7 @@ CondDBTagMgr::~CondDBTagMgr()
 
 void
 CondDBTagMgr::init()
-    throw(CondDBException)
+    
 {
     relTagMgr = relDBMgr->getTagMgr();
     relFolderMgr = relDBMgr->getFolderMgr();
@@ -68,7 +68,7 @@ CondDBTagMgr::init()
 void
 CondDBTagMgr::createCondDBTag( const string& name,
 			       const string  description) 
-    throw(CondDBException)
+    
 {
     string msg("Creating tag "); msg += name;
     DebugMesg(CondDB, devl, msg);
@@ -89,7 +89,7 @@ CondDBTagMgr::createCondDBTag( const string& name,
 
 void
 CondDBTagMgr::deleteCondDBTag( const string& tagName ) 
-    throw(CondDBException)
+    
 {
     relTagMgr->deleteTag(tagName);
     string msg = "Tag "; msg += tagName; msg += " successfully removed";;
@@ -100,7 +100,7 @@ CondDBTagMgr::deleteCondDBTag( const string& tagName )
 void
 CondDBTagMgr::getCondDBTag( const string& tagName,
 			    ICondDBTag*& tag) const
-    throw(CondDBException)
+    
 {
     string msg;
 
@@ -119,7 +119,7 @@ CondDBTagMgr::getCondDBTag( const string& tagName,
 }
 
 bool CondDBTagMgr::getCondDBTag (const string& folder, vector <string>& tagNames)
-    throw (CondDBException)
+    
 {
     string msg;
     
@@ -148,7 +148,7 @@ bool CondDBTagMgr::getCondDBTag (const string& folder, vector <string>& tagNames
 }
 
 void CondDBTagMgr::getAllCondDBTag( vector<string>& allTag ) const
-    throw(CondDBException)
+    
 {
     MySqlResult *res = relTagMgr->browseAll();
     Assert( res->countRows() != 0 );
@@ -165,7 +165,7 @@ void
 CondDBTagMgr::tag( const string& folderName,
 		   const string& tagName,
 		   string usingTagName)
-  throw(CondDBException)
+  
 {
   int folderId, tblPath;
   int tagId = relTagMgr->getId(tagName);
@@ -232,7 +232,7 @@ CondDBTagMgr::tag( const string& folderName,
 bool
 CondDBTagMgr::isTagged( const string& folderName,
                        const string& tagName )
-  throw(CondDBException)
+  
 {
   int folderId, tblPath;
   int tagId = relTagMgr->getId(tagName);
@@ -274,7 +274,7 @@ CondDBTagMgr::isTagged( const string& folderName,
 void
 CondDBTagMgr::untag( const string& folderName,
 		     const string& tagName)
-    throw(CondDBException)
+    
 {
     int tagId, folderId, dbId;
     tagId = relTagMgr->getId(tagName);
@@ -288,7 +288,7 @@ CondDBTagMgr::untag( const string& folderName,
 void
 CondDBTagMgr::changeTagName( const string& oldName,
 			     const string& newName) const
-    throw(CondDBException)
+    
 {
     if ( relTagMgr->exist(newName) ) {
 	string msg = "A tag already exists with name "; msg += newName;
@@ -305,7 +305,7 @@ void
 CondDBTagMgr::getAllTaggedFolder( const string& tagName,
 			          vector<string>& allFolder,
 			          vector<SimpleTime>& allApplicationTime)  const
-    throw(CondDBException)
+    
 {
     MySqlResult *res = relFolderMgr->browseTaggedFolders(tagName);
     if ( res->countRows() == 0 ) {

@@ -33,8 +33,7 @@ public:
    * Nothing else than the name will be affected by this change.
    * This method requires un update transaction.
    */
-  virtual void changeName( const std::string& newName)
-    throw(CondDBException) = 0;
+  virtual void changeName( const std::string& newName) = 0;
   
   /**
    * This methods returns a vector containing the full name of all

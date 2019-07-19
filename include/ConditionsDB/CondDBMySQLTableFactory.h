@@ -12,15 +12,12 @@ class CondDBMySQLTableFactory {
 public:
 
     /// creates an instance of ICondDBTable
-    static ICondDBTable* createCondDBTable()
-	throw(CondDBException);
+    static ICondDBTable* createCondDBTable();
     
     /// creates an instance of ICondDBTable
-    static ICondDBTable* createCondDBTable(int numColumns, int numRows = 0)
-	throw(CondDBException);
+    static ICondDBTable* createCondDBTable(int numColumns, int numRows = 0);
     
-    static void destroyCondDBTable(ICondDBTable* CondDBTable)
-	throw(CondDBException);
+    static void destroyCondDBTable(ICondDBTable* CondDBTable);
 };
 
 #endif /* CONDDBMYSQLTABLEFACTORY_HH */

@@ -141,8 +141,7 @@ void MySqlDBMgr::startRead() {}
  */
 
 void MySqlDBMgr::init(string& databaseInfo)
-    throw(CondDBException)
-{
+ {
 
 // This is needed and are local connections
 //relFolderMgr => MySqlFolderMgr
@@ -152,7 +151,7 @@ void MySqlDBMgr::init(string& databaseInfo)
     
     DebugMesg(CondDB, user, "databaseInfo = " << databaseInfo);
     
-    unsigned int sep = databaseInfo.find_first_of(":");
+    unsigned long int sep = databaseInfo.find_first_of(":");
     int end = databaseInfo.size();
     serverName = databaseInfo.substr(0, sep);
     databaseInfo = databaseInfo.substr(sep + 1, end);
@@ -185,8 +184,8 @@ void MySqlDBMgr::init(string& databaseInfo)
     if (sep == std::string::npos){
       password = databaseInfo;
       DebugMesg(CondDB, user, "passwd = " << password);
-      char *aux;
 #ifdef HAVE_STDLIB_H
+      char *aux;
       aux= getenv("CONDDB_PORT");
       // if there is no port defined we must use the default
       if (aux !=  NULL)
@@ -251,7 +250,6 @@ bool MySqlDBMgr::openDatabase(const string& dbname)
  */
 
 void MySqlDBMgr::createDatabase(const string& dbname)
-    throw(CondDBException)
 {
     if ( dbname!="" ) 
     {
@@ -293,7 +291,6 @@ void MySqlDBMgr::createDatabase(const string& dbname)
  */
 
 void MySqlDBMgr::getTagId(const string& tagName, int& tag_id)
-    throw(CondDBException)
 {
     tag_id = relTagMgr->getId(tagName);
     if (tag_id<0) {
@@ -313,7 +310,6 @@ void MySqlDBMgr::getTagId(const string& tagName, int& tag_id)
  */ 
 
 int MySqlDBMgr::createDBPath(const string& srvName, const string& dbName)
-    throw(CondDBException)
 {
     MySqlResult *res;
     MYSQLSTREAM query;
@@ -350,7 +346,6 @@ int MySqlDBMgr::createDBPath(const string& srvName, const string& dbName)
  */
 
 void MySqlDBMgr::getDBPath(int db_id, string& db_name, string& srv_name)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
     query << "SELECT db_id, dbname, srvname\n"
@@ -371,7 +366,6 @@ void MySqlDBMgr::getDBPath(int db_id, string& db_name, string& srv_name)
  */
 
 void MySqlDBMgr::getFolderId(string folderName, int& folderId, int& databaseId)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
     query << "SELECT fld_id, db_id FROM " FOLDERS_TBL " WHERE(fpath='" << folderName << "')";
@@ -383,7 +377,6 @@ void MySqlDBMgr::getFolderId(string folderName, int& folderId, int& databaseId)
 }
 
 void MySqlDBMgr::getDBId(int fldId, int& dbId)
-		throw(CondDBException)
 {
 		MYSQLSTREAM query;
 		query << "SELECT db_id FROM folders_tbl WHERE fld_id=" << fldId;
@@ -394,7 +387,6 @@ void MySqlDBMgr::getDBId(int fldId, int& dbId)
 }
 
 void MySqlDBMgr::getFolderType(string folderName, int& ftype)
-    throw(CondDBException)
 {
     MYSQLSTREAM query;
     query << "SELECT ddtype FROM " FOLDERS_TBL " WHERE(fpath='" << folderName << "')";
@@ -412,7 +404,6 @@ void MySqlDBMgr::getFolderType(string folderName, int& ftype)
  */
 
 MySqlObjectMgr* MySqlDBMgr::getObjectMgr(int dbId)
-    throw(CondDBException)
 {
     Assert(dbId != 0);
 
@@ -445,7 +436,6 @@ MySqlObjectMgr* MySqlDBMgr::getObjectMgr(int dbId)
  */
 
 MySqlOnlineMgr* MySqlDBMgr::getOnlineMgr(int dbId)
-    throw(CondDBException)
 {
     Assert(dbId != 0);
     MySqlOnlineMgr *oMgr = relOnlineMgr; 
@@ -477,7 +467,6 @@ MySqlOnlineMgr* MySqlDBMgr::getOnlineMgr(int dbId)
  */
 
 MySqlDataMgr* MySqlDBMgr::getDataMgr(int dbId)
-    throw(CondDBException)
 {
     Assert( dbId!=0 );
 
